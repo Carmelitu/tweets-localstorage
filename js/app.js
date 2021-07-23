@@ -19,6 +19,7 @@ function eventListeners(){
 
 // Funciones
 
+// Agrega Tweet al enviar formulario
 function agregarTweet(e){
     e.preventDefault();
 
@@ -29,9 +30,21 @@ function agregarTweet(e){
         return;
     }
 
-    tweets =[...tweets, tweet];
+    const tweetObj = {
+        id: Date.now(),
+        tweet
+    }
+
+    // Se agrega ultimo tweet al arreglo
+    tweets =[...tweets, tweetObj];
+
+    crearHTML();
+
+    // Reiniciar formulario
+    formulario.reset();
 }
 
+// Muestra error recibido por parametro
 function mostrarError(error){
     const mensajeError = document.createElement('p');
     mensajeError.textContent = error;
@@ -47,4 +60,23 @@ function mostrarError(error){
     }, 3000);
 }
 
+// Muestra listado de tweets
+function crearHTML(){
+    limpiarHTML();
 
+    if (tweets.length > 0){
+        tweets.forEach( tweet => {
+            const li = document.createElement('li');
+            li.innerText = tweet.tweet;
+
+            listaTweets.appendChild(li);
+        })
+    }
+}
+
+// Limpia HTML
+function limpiarHTML(){
+    while(listaTweets.firstChild){
+        listaTweets.removeChild(listaTweets.firstChild);
+    }
+}
