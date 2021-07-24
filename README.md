@@ -4,7 +4,7 @@
 
 Check it out here: https://tweets-localstorage-carmelitu.netlify.app/
 
-Project made for a JavaScript course on Udemy. The code is in Spanish and its purpose is to operate a shopping cart. I just did the script. HTML and CSS are delivered already finalized by the teacher.
+Project made for a JavaScript course on Udemy. HTML and CSS are delivered already finalized by the teacher.
 
 This page is in charge of saving the Tweets written in LocalStorage. It has the function to delete tweets and it returns an error when you want to add something without text.
 
