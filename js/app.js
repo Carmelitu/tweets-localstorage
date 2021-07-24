@@ -8,14 +8,16 @@ let tweets = [];
 eventListeners();
 
 function eventListeners(){
+    // Carga tweet al enviar formulario
     formulario.addEventListener('submit', agregarTweet);
+
+    // Carga tweets cuando el documento está listo
+    document.addEventListener('DOMContentLoaded', () => {
+        tweets = JSON.parse(localStorage.getItem('tweets')) || [];
+
+        crearHTML();
+    })
 }
-
-
-
-
-
-
 
 // Funciones
 
@@ -72,6 +74,8 @@ function crearHTML(){
             listaTweets.appendChild(li);
         })
     }
+
+    sincronizarStorage();
 }
 
 // Limpia HTML
@@ -79,4 +83,9 @@ function limpiarHTML(){
     while(listaTweets.firstChild){
         listaTweets.removeChild(listaTweets.firstChild);
     }
+}
+
+// Agrega los tweets a Local Storage
+function sincronizarStorage(){
+    localStorage.setItem('tweets', JSON.stringify(tweets));
 }
