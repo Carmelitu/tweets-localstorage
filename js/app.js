@@ -68,8 +68,20 @@ function crearHTML(){
 
     if (tweets.length > 0){
         tweets.forEach( tweet => {
+            // Boton para eliminar
+            const btnEliminar = document.createElement('a');
+            btnEliminar.classList.add('borrar-tweet');
+            btnEliminar.innerText = 'X';
+
+            // Funcion eliminar
+            btnEliminar.onclick = () => {
+                borrarTweet(tweet.id);
+            }
+
+            // Crea Lista de tweets
             const li = document.createElement('li');
             li.innerText = tweet.tweet;
+            li.appendChild(btnEliminar);
 
             listaTweets.appendChild(li);
         })
@@ -88,4 +100,9 @@ function limpiarHTML(){
 // Agrega los tweets a Local Storage
 function sincronizarStorage(){
     localStorage.setItem('tweets', JSON.stringify(tweets));
+}
+
+function borrarTweet(id){
+    tweets = tweets.filter(tweet => tweet.id !== id);
+    crearHTML();
 }
